@@ -4,9 +4,6 @@
   <hr class="my-4">
   <p>Enter a channel name, and I will take care of everything</p>
   <p class="lead">
-    <%= form_tag(search_channels_path, method: "post", class: "form-inline my-2 my-lg-0") do %>
-        <%= text_field_tag(:search_input, @search_input, class: "form-control mr-sm-2", placeholder: "Search a channel" ) %>
-        <%= submit_tag("Search", class: "btn btn-outline-success my-2 my-sm-0") %>
-    <% end %>
+    <%= render partial: "channels/search_channels_bar" %>
   </p>
 </div>

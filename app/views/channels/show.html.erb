@@ -2,28 +2,29 @@
 
 <div class="card">
     <div class="row">
-        <div class="col-xs-4 col-md-4">
+        <div class="col-xs-4 col-md-2">
             <%= image_tag channel["snippet"]["thumbnails"]["medium"]["url"], class: "img-fluid rounded" %>
         </div>
-        <div class="col-xs-8 col-md-8">
+        <div class="col-xs-8 col-md-10">
             <strong><%= channel["snippet"]["title"] %></strong><br />
-            <%= channel["snippet"]["description"] %>
+            <%= channel["snippet"]["description"] %><br />
+            <%= link_to "Youtube", "https://youtube.com/channel/#{channel["id"]}", target: "blank", class: "btn btn-outline-success" %>
         </div>
         <div class="col-md-12">
             <div class="row">
                 <div class="col-md-4">
-                    Videos : <%= channel["statistics"]["videoCount"]%>
+                    Videos : <%= number_with_delimiter(channel["statistics"]["videoCount"], delimiter: '.')%>
                 </div>
                 <% if !channel["statistics"]["hiddenSubscriberCount"] %>
                     <div class="col-md-4">
-                        Subscribers : <%= channel["statistics"]["subscriberCount"]%>
+                        Subscribers : <%= number_with_delimiter(channel["statistics"]["subscriberCount"], delimiter: '.') %>
                     </div>
                 <% end %>
                 <div class="col-md-4">
-                    Total Views : <%= channel["statistics"]["viewCount"]%>
+                    Total Views : <%= number_with_delimiter(channel["statistics"]["viewCount"], delimiter: '.') %>
                 </div>
                 <div class="col-md-4">
-                    Average Views/Video : <%= Integer(channel["statistics"]["viewCount"]) / Integer(channel["statistics"]["videoCount"])%>
+                    Average Views/Video : <%= number_with_delimiter(Integer(channel["statistics"]["viewCount"]) / Integer(channel["statistics"]["videoCount"]), delimiter: '.') %>
                 </div>
             </div>
         </div>
