@@ -19,40 +19,27 @@
                 <%= link_to "Youtube Channel", "https://youtube.com/channel/#{channel["id"]}", target: "blank", class: "btn btn-outline-danger" %>
             </div>
         </div>
-        <div class="col-md-12">
-            <div class="row mb-3">
-                <div class="col-md-12">
-                    <h2 class="h5">Global statistics :</h2>
-                </div>
-                <div class="col-md-4">
-                    Videos : <%= number_with_delimiter(channel["statistics"]["videoCount"], delimiter: '.')%>
-                </div>
-                <% if !channel["statistics"]["hiddenSubscriberCount"] %>
-                    <div class="col-md-4">
-                        Subscribers : <%= number_with_delimiter(channel["statistics"]["subscriberCount"], delimiter: '.') %>
-                    </div>
-                <% end %>
-                <div class="col-md-4">
-                    Total Views : <%= number_with_delimiter(channel["statistics"]["viewCount"], delimiter: '.') %>
-                </div>
-                <div class="col-md-4">
-                    Average Views/Video : <%= number_with_delimiter(Integer(channel["statistics"]["viewCount"]) / Integer(channel["statistics"]["videoCount"]), delimiter: '.') %>
-                </div>
-            </div>
-            <div class="row mb-3">
-                <div class="col-md-12">
-                    <h2 class="h5">Computed on the last <%= videos_stats.count %> videos :</h2>
-                </div>
-                <div class="col-md-4">
-                    Average Views/Video : <%= number_with_delimiter(last_views_count / videos_stats.count, delimiter: '.') %>
-                </div>
-                <div class="col-md-4">
-                    Average Likes/Video : <%= number_with_delimiter(last_likes_count / videos_stats.count, delimiter: '.') %>
-                </div>
-                <div class="col-md-4">
-                    Average Comments/Video : <%= number_with_delimiter(last_comms_count / videos_stats.count, delimiter: '.') %>
-                </div>
-            </div>
+        <div class="col-md-6 mb-3">
+            <h2 class="h5">Global statistics :</h2>
+            
+            <% if !channel["statistics"]["hiddenSubscriberCount"] %>
+                Subscribers : <%= number_with_delimiter(channel["statistics"]["subscriberCount"], delimiter: '.') %><br />
+            <% end %>
+            
+            Videos : <%= number_with_delimiter(channel["statistics"]["videoCount"], delimiter: '.')%><br />
+            
+            Total Views : <%= number_with_delimiter(channel["statistics"]["viewCount"], delimiter: '.') %><br />
+       
+            Average Views/Video : <%= number_with_delimiter(Integer(channel["statistics"]["viewCount"]) / Integer(channel["statistics"]["videoCount"]), delimiter: '.') %><br />
+        </div>
+        <div class="col-md-6 mb-3">
+            <h2 class="h5">On the last <%= videos_stats.count %> videos :</h2>
+            
+            Average Views/Video : <%= number_with_delimiter(last_views_count / videos_stats.count, delimiter: '.') %><br />
+        
+            Average Likes/Video : <%= number_with_delimiter(last_likes_count / videos_stats.count, delimiter: '.') %><br />
+        
+            Average Comments/Video : <%= number_with_delimiter(last_comms_count / videos_stats.count, delimiter: '.') %><br />
         </div>
     </div>
 </div>
