@@ -1,4 +1,4 @@
-<h1><%=YoutubeApiConnector::MAX_RESULTS%> first channels for "<%=@search_input%>"</h1>
+<h1><%= @channels.count %> first channels for "<%= @search_input %>"</h1>
 
 <div class="row">
     <% @channels.each do |channel| %>
