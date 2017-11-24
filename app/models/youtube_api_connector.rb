@@ -5,7 +5,7 @@ class YoutubeApiConnector
     OAUTH_CLIENT_ID = ENV["GOOGLE_CLIENT_ID"]
     OAUTH_CLIENT_SECRET = ENV["GOOGLE_CLIENT_SECRET"]
         
-    MAX_RESULTS = 50
+    MAX_RESULTS = 10
     
     def initialize()
         initialize_secret_keys()

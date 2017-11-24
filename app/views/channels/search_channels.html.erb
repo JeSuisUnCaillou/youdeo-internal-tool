@@ -1,6 +1,8 @@
+<h1><%=YoutubeApiConnector::MAX_RESULTS%> first channels for "<%=@search_input%>"</h1>
+
 <div class="row">
     <% @channels.each do |channel| %>
-        <div class="col-md-4">
+        <div class="col-md-4 mb-3">
             <%= render partial: "channels/overview", locals: { channel: channel } %>
         </div>
     <% end %>    
