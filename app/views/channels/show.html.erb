@@ -1,17 +1,25 @@
 <% channel = @channel %>
+<% videos_stats = @videos_stats %>
+<% last_views_count = @last_views_count %>
+<% last_likes_count = @last_likes_count %>
+<% last_comms_count = @last_comms_count %>
+
 
 <div class="card">
     <div class="row">
         <div class="col-xs-4 col-md-2">
             <%= image_tag channel["snippet"]["thumbnails"]["medium"]["url"], class: "img-fluid rounded" %>
         </div>
-        <div class="col-xs-8 col-md-10">
-            <strong><%= channel["snippet"]["title"] %></strong><br />
+        <div class="col-xs-8 col-md-10 mb-3">
+            <h1><%= channel["snippet"]["title"] %></h1>
             <%= channel["snippet"]["description"] %><br />
-            <%= link_to "Youtube", "https://youtube.com/channel/#{channel["id"]}", target: "blank", class: "btn btn-outline-success" %>
+            <%= link_to "Youtube Channel", "https://youtube.com/channel/#{channel["id"]}", target: "blank", class: "btn btn-outline-danger" %>
         </div>
         <div class="col-md-12">
-            <div class="row">
+            <div class="row mb-3">
+                <div class="col-md-12">
+                    <h2 class="h5">Global statistics :</h2>
+                </div>
                 <div class="col-md-4">
                     Videos : <%= number_with_delimiter(channel["statistics"]["videoCount"], delimiter: '.')%>
                 </div>
@@ -25,6 +33,20 @@
                 </div>
                 <div class="col-md-4">
                     Average Views/Video : <%= number_with_delimiter(Integer(channel["statistics"]["viewCount"]) / Integer(channel["statistics"]["videoCount"]), delimiter: '.') %>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-12">
+                    <h2 class="h5">Computed on the last <%= videos_stats.count %> videos :</h2>
+                </div>
+                <div class="col-md-4">
+                    Average Views/Video : <%= number_with_delimiter(last_views_count / videos_stats.count, delimiter: '.') %>
+                </div>
+                <div class="col-md-4">
+                    Average Likes/Video : <%= number_with_delimiter(last_likes_count / videos_stats.count, delimiter: '.') %>
+                </div>
+                <div class="col-md-4">
+                    Average Comments/Video : <%= number_with_delimiter(last_comms_count / videos_stats.count, delimiter: '.') %>
                 </div>
             </div>
         </div>
