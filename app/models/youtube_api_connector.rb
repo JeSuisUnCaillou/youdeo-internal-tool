@@ -1,3 +1,5 @@
+require 'net/http'
+
 class YoutubeApiConnector
     API_KEY = ENV["GOOGLE_API_KEY"]
     OAUTH_CLIENT_ID = ENV["GOOGLE_CLIENT_ID"]
