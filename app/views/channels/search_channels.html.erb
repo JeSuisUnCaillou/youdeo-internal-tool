@@ -1,0 +1,7 @@
+<div class="row">
+    <% @channels.each do |channel| %>
+        <div class="col-md-4">
+            <%= render partial: "channels/overview", locals: { channel: channel } %>
+        </div>
+    <% end %>    
+</div>

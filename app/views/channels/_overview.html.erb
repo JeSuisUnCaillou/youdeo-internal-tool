@@ -1,0 +1,16 @@
+<% channel ||= {} %>
+
+<div class="card">
+    <div class="row">
+        <div class="col-xs-4 col-md-4">
+            <%= image_tag channel["snippet"]["thumbnails"]["medium"]["url"], class: "img-fluid rounded" %>
+        </div>
+        <div class="col-xs-8 col-md-8">
+            <strong><%= channel["snippet"]["title"] %></strong><br />
+            <%= channel["snippet"]["description"] %>
+        </div>
+        <div class="col-md-12">
+            <%= link_to "Stats", channel_path(channel["id"]["channelId"]), class: "btn btn-outline-success" %>
+        </div>
+    </div>
+</div>
