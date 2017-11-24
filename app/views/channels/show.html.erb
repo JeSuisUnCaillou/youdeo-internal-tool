@@ -1,0 +1,31 @@
+<% channel = @channel %>
+
+<div class="card">
+    <div class="row">
+        <div class="col-xs-4 col-md-4">
+            <%= image_tag channel["snippet"]["thumbnails"]["medium"]["url"], class: "img-fluid rounded" %>
+        </div>
+        <div class="col-xs-8 col-md-8">
+            <strong><%= channel["snippet"]["title"] %></strong><br />
+            <%= channel["snippet"]["description"] %>
+        </div>
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-4">
+                    Videos : <%= channel["statistics"]["videoCount"]%>
+                </div>
+                <% if !channel["statistics"]["hiddenSubscriberCount"] %>
+                    <div class="col-md-4">
+                        Subscribers : <%= channel["statistics"]["subscriberCount"]%>
+                    </div>
+                <% end %>
+                <div class="col-md-4">
+                    Total Views : <%= channel["statistics"]["viewCount"]%>
+                </div>
+                <div class="col-md-4">
+                    Average Views/Video : <%= Integer(channel["statistics"]["viewCount"]) / Integer(channel["statistics"]["videoCount"])%>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
