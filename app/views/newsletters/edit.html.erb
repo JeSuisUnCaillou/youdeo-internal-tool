@@ -1,0 +1,24 @@
+
+<div style="max-width: 564px">
+
+    <% @playlist_items.each_with_index do |playlist_item, index| %>
+        <% video_id = playlist_item["snippet"]["resourceId"]["videoId"] %>
+        <% video_title = playlist_item["snippet"]["title"] %>
+        <% video_thumbnail = playlist_item["snippet"]["thumbnails"]["medium"]["url"] %>
+        <% channel_title = playlist_item["channel"]["snippet"]["title"] %>
+        <% channel_desc = playlist_item["channel"]["snippet"]["description"] %>
+        
+        <div>
+            <%= image_tag video_thumbnail, class: "full_width" %>
+        </div>
+        <div>
+            <%= label_tag :title, "Titre" %><br />
+            <%= text_field_tag "title", channel_title + " : " + video_title, class: "full_width" %>
+        </div>
+        <div>
+            <%= label_tag :description, "Description" %><br />
+            <%= text_area_tag :description, channel_desc, class: "full_width" %>
+        </div>
+    <% end %>
+
+</div>

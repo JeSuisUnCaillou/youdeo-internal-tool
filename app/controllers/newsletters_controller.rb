@@ -24,6 +24,21 @@ class NewslettersController < ApplicationController
         @playlist_items.each_with_index{ |item, index| item["channel"] = @channels[index] }
     end
     
+    def edit
+        youtube_api = YoutubeApiConnector.new
+        @playlist_id = playlist_params[:id]
+        @playlist_items = youtube_api.get_playlist_items(@playlist_id, 10)
+        videos_ids = @playlist_items.map{ |item| item["contentDetails"]["videoId"] }
+        videos = youtube_api.get_videos_infos(videos_ids)
+        
+        channel_ids = videos.map{ |video| video["snippet"]["channelId"] }
+        
+        @channels = youtube_api.get_channels_infos(channel_ids)
+        
+        # Add channel infos to each video
+        @playlist_items.each_with_index{ |item, index| item["channel"] = @channels[index] }
+    end
+    
     private
     
         def newsletter_params
