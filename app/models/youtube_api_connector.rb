@@ -16,13 +16,13 @@ class YoutubeApiConnector
     end
     
     def get_channels_infos(channels_ids)
-        url = "https://www.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics&id=#{channels_ids}"
+        url = "https://www.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics&id=#{channels_ids.join(",")}"
         items = get_resource_first_page(url, 10)
         return items
     end
     
     def get_channel_infos(channel_id)
-        items = get_channels_infos(channel_id)
+        items = get_channels_infos([channel_id])
         return items.first
     end
     
@@ -41,6 +41,12 @@ class YoutubeApiConnector
         videos_ids = playlist_items.map{ |playlist_item| playlist_item["contentDetails"]["videoId"] }.join(",")
         url = "https://www.googleapis.com/youtube/v3/videos?part=statistics&id=#{videos_ids}"
         items = get_resource_first_page(url, playlist_items.count)
+        return items
+    end
+    
+    def get_videos_infos(videos_ids)
+        url = "https://www.googleapis.com/youtube/v3/videos?part=snippet&id=#{videos_ids.join(',')}"
+        items = get_resource_first_page(url, videos_ids.count)
         return items
     end
 

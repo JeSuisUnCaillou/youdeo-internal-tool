@@ -7,16 +7,18 @@
                         <tbody>
                             <tr>
                                 <td class="mcnImageCardBottomImageContent" align="center" valign="top" style="padding-top: 0px;padding-right: 0px;padding-bottom: 0;padding-left: 0px;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
-                                    <a href="https://www.youtube.com/watch?v=<%= playlist_item["snippet"]["resourceId"]["videoId"] %>&amp;list=<%= @playlist_id %>&amp;index=<%= index+1 %>" title="BEST OF CANADA : 2 semaines de roadtrip au Québec" class="" target="_blank" style="mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+                                    <a href="https://www.youtube.com/watch?v=<%= playlist_item["snippet"]["resourceId"]["videoId"] %>&amp;list=<%= @playlist_id %>&amp;index=<%= index+1 %>" title="<%= playlist_item["channel"]["snippet"]["title"] %> : <%= playlist_item["snippet"]["title"] %>" class="" target="_blank" style="mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
                                         <img alt="<%= playlist_item["snippet"]["title"] %>" src="<%= playlist_item["snippet"]["thumbnails"]["medium"]["url"] %>" width="564" style="max-width: 640px;border: 0;height: auto;outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;vertical-align: bottom;" class="mcnImage">
                                     </a>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="mcnTextContent" valign="top" style="padding: 9px 18px;color: #F2F2F2;font-family: Helvetica;font-size: 14px;font-weight: normal;line-height: normal;text-align: center;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;word-break: break-word;" width="546">
-                                    <div style="text-align: center;"><strong><u><%= "CHANNEL NAME" %> :</u><em><%= playlist_item["snippet"]["title"] %></em></strong>
-                                        <div style="text-align: justify;"><br>
-                                            Ils sont deux, ils sont amoureux. Ils font le tour du Monde sans date de retour. Le montage de leurs vidéos est top, les paysages font rêver et leur joie de vivre est communicative !</div>
+                                    <div style="text-align: center;">
+                                        <div style="text-align: center;"><strong><u><%= playlist_item["channel"]["snippet"]["title"] %> :</u><em><%= playlist_item["snippet"]["title"] %></em></strong>
+                                            <div style="text-align: justify;"><br>
+                                                <%= playlist_item["channel"]["snippet"]["description"] %>
+                                            </div>
                                         </div>
                                     </div>
     
