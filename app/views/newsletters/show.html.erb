@@ -1,1 +1,31 @@
-<%= @playlist_items %>
+<% @playlist_items.each_with_index do |playlist_item, index| %>
+    <table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnImageCardBlock" style="border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+        <tbody class="mcnImageCardBlockOuter">
+            <tr>
+                <td class="mcnImageCardBlockInner" valign="top" style="padding-top: 9px;padding-right: 18px;padding-bottom: 9px;padding-left: 18px;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+                    <table align="right" border="0" cellpadding="0" cellspacing="0" class="mcnImageCardBottomContent" width="100%" style="background-color: #EBA91F;border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+                        <tbody>
+                            <tr>
+                                <td class="mcnImageCardBottomImageContent" align="center" valign="top" style="padding-top: 0px;padding-right: 0px;padding-bottom: 0;padding-left: 0px;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+                                    <a href="https://www.youtube.com/watch?v=<%= playlist_item["snippet"]["resourceId"]["videoId"] %>&amp;list=<%= @playlist_id %>&amp;index=<%= index+1 %>" title="BEST OF CANADA : 2 semaines de roadtrip au Québec" class="" target="_blank" style="mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+                                        <img alt="<%= playlist_item["snippet"]["title"] %>" src="<%= playlist_item["snippet"]["thumbnails"]["medium"]["url"] %>" width="564" style="max-width: 640px;border: 0;height: auto;outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;vertical-align: bottom;" class="mcnImage">
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="mcnTextContent" valign="top" style="padding: 9px 18px;color: #F2F2F2;font-family: Helvetica;font-size: 14px;font-weight: normal;line-height: normal;text-align: center;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;word-break: break-word;" width="546">
+                                    <div style="text-align: center;"><strong><u><%= "CHANNEL NAME" %> :</u><em><%= playlist_item["snippet"]["title"] %></em></strong>
+                                        <div style="text-align: justify;"><br>
+                                            Ils sont deux, ils sont amoureux. Ils font le tour du Monde sans date de retour. Le montage de leurs vidéos est top, les paysages font rêver et leur joie de vivre est communicative !</div>
+                                        </div>
+                                    </div>
+    
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+<% end %>

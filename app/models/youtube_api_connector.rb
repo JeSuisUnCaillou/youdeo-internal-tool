@@ -15,10 +15,15 @@ class YoutubeApiConnector
         return items
     end
     
-    def get_channel_infos(channel_id)
-        url = "https://www.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics&id=#{channel_id}"
-        items = get_resource_first_page(url, 1).first
+    def get_channels_infos(channels_ids)
+        url = "https://www.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics&id=#{channels_ids}"
+        items = get_resource_first_page(url, 10)
         return items
+    end
+    
+    def get_channel_infos(channel_id)
+        items = get_channels_infos(channel_id)
+        return items.first
     end
     
     def get_channel_uploaded_items(channel, max_results)
