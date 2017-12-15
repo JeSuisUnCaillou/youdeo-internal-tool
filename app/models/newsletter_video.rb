@@ -1,0 +1,2 @@
+class NewsletterVideo < ApplicationRecord
+end

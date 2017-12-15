@@ -6,12 +6,12 @@
 
 <div id="copy_content" style="max-width: 564px">
 
-    <% @playlist_items.each_with_index do |playlist_item, index| %>
-        <% video_id = playlist_item["snippet"]["resourceId"]["videoId"] %>
-        <% video_title = playlist_item["snippet"]["title"] %>
-        <% video_thumbnail = playlist_item["snippet"]["thumbnails"]["medium"]["url"] %>
-        <% channel_title = playlist_item["channel"]["snippet"]["title"] %>
-        <% channel_desc = playlist_item["channel"]["snippet"]["description"] %>
+    <% @newsletter_videos.each_with_index do |newsletter_video, index| %>
+        <% video_id = newsletter_video.video_id %>
+        <% video_title = newsletter_video.video_title %>
+        <% video_thumbnail = newsletter_video.video_thumbnail %>
+        <% channel_title = newsletter_video.channel_title %>
+        <% channel_desc = newsletter_video.channel_desc %>
     
         <table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnImageCardBlock" style="border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
             <tbody class="mcnImageCardBlockOuter">
