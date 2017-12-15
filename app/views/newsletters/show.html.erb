@@ -1,4 +1,12 @@
+<div style="max-width: 564px">
+
 <% @playlist_items.each_with_index do |playlist_item, index| %>
+    <% video_id = playlist_item["snippet"]["resourceId"]["videoId"] %>
+    <% video_title = playlist_item["snippet"]["title"] %>
+    <% video_thumbnail = playlist_item["snippet"]["thumbnails"]["medium"]["url"] %>
+    <% channel_title = playlist_item["channel"]["snippet"]["title"] %>
+    <% channel_desc = playlist_item["channel"]["snippet"]["description"] %>
+
     <table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnImageCardBlock" style="border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
         <tbody class="mcnImageCardBlockOuter">
             <tr>
@@ -7,17 +15,17 @@
                         <tbody>
                             <tr>
                                 <td class="mcnImageCardBottomImageContent" align="center" valign="top" style="padding-top: 0px;padding-right: 0px;padding-bottom: 0;padding-left: 0px;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
-                                    <a href="https://www.youtube.com/watch?v=<%= playlist_item["snippet"]["resourceId"]["videoId"] %>&amp;list=<%= @playlist_id %>&amp;index=<%= index+1 %>" title="<%= playlist_item["channel"]["snippet"]["title"] %> : <%= playlist_item["snippet"]["title"] %>" class="" target="_blank" style="mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
-                                        <img alt="<%= playlist_item["snippet"]["title"] %>" src="<%= playlist_item["snippet"]["thumbnails"]["medium"]["url"] %>" width="564" style="max-width: 640px;border: 0;height: auto;outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;vertical-align: bottom;" class="mcnImage">
+                                    <a href="https://www.youtube.com/watch?v=<%= video_id %>&amp;list=<%= @playlist_id %>&amp;index=<%= index+1 %>" title="<%= channel_title %> : <%= video_title %>" class="" target="_blank" style="mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+                                        <img alt="<%= video_title %>" src="<%= video_thumbnail %>" width="564" style="max-width: 640px;border: 0;height: auto;outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;vertical-align: bottom;" class="mcnImage">
                                     </a>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="mcnTextContent" valign="top" style="padding: 9px 18px;color: #F2F2F2;font-family: Helvetica;font-size: 14px;font-weight: normal;line-height: normal;text-align: center;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;word-break: break-word;" width="546">
                                     <div style="text-align: center;">
-                                        <div style="text-align: center;"><strong><u><%= playlist_item["channel"]["snippet"]["title"] %> :</u><em><%= playlist_item["snippet"]["title"] %></em></strong>
+                                        <div style="text-align: center;"><strong><u><%= channel_title %> :</u> <em><%= video_title %></em></strong>
                                             <div style="text-align: justify;"><br>
-                                                <%= playlist_item["channel"]["snippet"]["description"] %>
+                                                <%= channel_desc %>
                                             </div>
                                         </div>
                                     </div>
@@ -31,3 +39,5 @@
         </tbody>
     </table>
 <% end %>
+
+</div>
