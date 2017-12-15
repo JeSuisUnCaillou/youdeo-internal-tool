@@ -21,8 +21,12 @@ class YoutubeApiConnector
         return items
     end
     
-    def get_playlist_items(channel, max_results)
+    def get_channel_uploaded_items(channel, max_results)
         playlist_id = channel["contentDetails"]["relatedPlaylists"]["uploads"]
+        return get_playlist_items(playlist_id, max_results)
+    end
+    
+    def get_playlist_items(playlist_id, max_results)
         url = "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet%2CcontentDetails&playlistId=#{playlist_id}"
         items = get_resource_first_page(url, max_results)
         return items

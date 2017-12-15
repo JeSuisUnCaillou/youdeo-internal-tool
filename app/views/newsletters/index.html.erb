@@ -1,7 +1,7 @@
 <h1>Newsletter</h1>
 <div class="subtitle">Let's craft !</div>
 
-<%= form_tag do %>
+<%= form_tag newsletters_path do %>
   <%= text_field_tag(:q, "", placeholder: "Enter a playlist link") %>
   <%= submit_tag("Craft") %>
 <% end %>
