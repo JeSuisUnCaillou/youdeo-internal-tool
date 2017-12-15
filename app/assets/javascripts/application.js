@@ -16,3 +16,17 @@
 //= require popper
 //= require bootstrap-sprockets
 //= require_tree .
+
+$(document).ready(function(){
+    var content  = document.getElementById( 'copy_content' );
+    var toCopy = document.getElementById( 'copy_temp' );
+    var btnCopy = document.getElementById( 'copy_button' );
+
+    btnCopy.addEventListener( 'click', function(){
+        toCopy.value = content.innerHTML;
+    	toCopy.select();
+    	document.execCommand( 'copy' );
+    	return false;
+    } );
+    
+})

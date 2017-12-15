@@ -1,8 +1,10 @@
 <% colors = ["#EBA91F", "#36BB93", "#E31565", "#7D43AE"] %>
 
-<%= link_to "EDIT", edit_newsletter_path(@playlist_id), class: "btn btn-primary" %>
+<%= link_to "EDIT", edit_newsletter_path(@playlist_id), class: "btn btn-secondary" %>
+<%= link_to "COPY", "", id: "copy_button", class: "btn btn-primary" %>
+<%= text_field_tag "", "", id: "copy_temp" %>
 
-<div style="max-width: 564px">
+<div id="copy_content" style="max-width: 564px">
 
     <% @playlist_items.each_with_index do |playlist_item, index| %>
         <% video_id = playlist_item["snippet"]["resourceId"]["videoId"] %>
