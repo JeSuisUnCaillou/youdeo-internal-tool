@@ -1,7 +1,7 @@
 require 'csv'
 
-desc "get the stats of the youtube channels shared by the youdeo newsletter"
-task :yt_stats, [:filename] => [:environment] do |t, args|
+desc "get the ids of all youtube channels shared by the youdeo newsletter"
+task :get_yt_ids, [:filename] => [:environment] do |t, args|
     channel_ids = []
     
     CSV.foreach(File.dirname(__FILE__) + "/" + args[:filename]) do |row|
@@ -13,6 +13,34 @@ task :yt_stats, [:filename] => [:environment] do |t, args|
     }
 end
 
+desc "get the stats of youtube channels ids"
+task :get_yt_stats, [:filename] => [:environment] do |t, args|
+    channels_stats = []
+    
+    CSV.foreach(File.dirname(__FILE__) + "/" + args[:filename]) do |row|
+        channel_id = row.first
+        channels_stats.push({ id: channel_id, stats: get_stats(channel_id) })
+    end
+    
+    File.open(File.dirname(__FILE__) + "/" + "channels_stats.csv", "w") { |file| 
+        file.write(channels_stats.map{ |h| "#{h[:id]};#{h[:stats]["subscriberCount"]};#{h[:stats]["viewCount"]};#{h[:stats]["videoCount"]}"}.join("\n"))
+    }
+end
+
+
+#Get the stats of a youtube channel id
+def get_stats(channel_id)
+    youtube_api = YoutubeApiConnector.new
+    channel = youtube_api.get_channel_infos(channel_id)
+    if(channel)
+        channel["statistics"].slice("viewCount", "subscriberCount", "videoCount")
+    else
+       {}
+    end
+end
+
+
+#Extracts the id of the channel of a channel link, a video link, or a user link
 def extract_id(channel_link)
     youtube_api = YoutubeApiConnector.new
     
