@@ -26,6 +26,12 @@ class YoutubeApiConnector
         return items.first
     end
     
+    def get_channel_infos_by_username(username)
+        url = "https://www.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics&forUsername=#{username}"
+        items = get_resource_first_page(url, 1)
+        return items.first
+    end
+    
     def get_channel_uploaded_items(channel, max_results)
         playlist_id = channel["contentDetails"]["relatedPlaylists"]["uploads"]
         return get_playlist_items(playlist_id, max_results)
