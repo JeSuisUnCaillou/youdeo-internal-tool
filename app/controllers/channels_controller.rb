@@ -16,9 +16,9 @@ class ChannelsController < ApplicationController
         @channel = youtube_api.get_channel_infos(@channel_id)
         @playlist_items = youtube_api.get_playlist_items(@channel, 25)
         @videos_stats = youtube_api.get_videos_stats(@playlist_items)
-        @last_views_count = @videos_stats.map{ |stats| Integer(stats["statistics"]["viewCount"]) }.sum
-        @last_likes_count = @videos_stats.map{ |stats| Integer(stats["statistics"]["likeCount"]) }.sum
-        @last_comms_count = @videos_stats.map{ |stats| Integer(stats["statistics"]["commentCount"]) }.sum
+        @last_views_count = @videos_stats.map{ |stats| Integer(stats["statistics"]["viewCount"] || 0) }.sum
+        @last_likes_count = @videos_stats.map{ |stats| Integer(stats["statistics"]["likeCount"] || 0) }.sum
+        @last_comms_count = @videos_stats.map{ |stats| Integer(stats["statistics"]["commentCount"] || 0) }.sum
     end
     
     private
