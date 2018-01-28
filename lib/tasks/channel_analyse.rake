@@ -23,7 +23,7 @@ task :get_yt_stats, [:filename] => [:environment] do |t, args|
     end
     
     File.open(File.dirname(__FILE__) + "/" + "channels_stats.csv", "w") { |file| 
-        file.write(channels_stats.map{ |h| "#{h[:id]};#{h[:stats]["subscriberCount"]};#{h[:stats]["viewCount"]};#{h[:stats]["videoCount"]}"}.join("\n"))
+        file.write(channels_stats.map{ |h| "#{h[:id]};#{h[:stats]["name"]};#{h[:stats]["subscriberCount"]};#{h[:stats]["viewCount"]};#{h[:stats]["videoCount"]}"}.join("\n"))
     }
 end
 
@@ -33,7 +33,10 @@ def get_stats(channel_id)
     youtube_api = YoutubeApiConnector.new
     channel = youtube_api.get_channel_infos(channel_id)
     if(channel)
-        channel["statistics"].slice("viewCount", "subscriberCount", "videoCount")
+        name = channel["snippet"]["title"]
+        stats = channel["statistics"].slice("viewCount", "subscriberCount", "videoCount")
+        stats["name"] = name
+        stats
     else
        {}
     end
